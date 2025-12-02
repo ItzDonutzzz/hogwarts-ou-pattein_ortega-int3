@@ -1,6 +1,30 @@
 ###introduction to chapter 1
+import time
 
-print("Welcome to Chapter 1: The Beginning of Your Adventure!")
-print("In this chapter, you will embark on a journey filled with challenges and discoveries.")
-print("Welcome to the world of Harry Potter!")
+def introduction(messages, delay=1.0):
+    for msg in messages:
+        print(msg)
+        time.sleep(delay)
+    return(messages)
 
+def create_character(last_name, first_name, courage, intelligence, loyalty, ambition):
+    character = {
+        "last_name": last_name,
+        "first_name": first_name,
+        "courage": courage,
+        "intelligence": intelligence,
+        "loyalty": loyalty,
+        "ambition": ambition
+    }
+    return character
+
+def init_character(str, attributes):
+    last_name = str.get("last_name", "Doe")
+    first_name = str.get("first_name", "John")
+    courage = attributes.get("courage", 5)
+    intelligence = attributes.get("intelligence", 5)
+    loyalty = attributes.get("loyalty", 5)
+    ambition = attributes.get("ambition", 5)
+
+    character = create_character(last_name, first_name, courage, intelligence, loyalty, ambition)
+    return character
