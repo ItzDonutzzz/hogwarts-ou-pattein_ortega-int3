@@ -22,14 +22,14 @@ if __name__ == "__main__":
     ambition = int(input("Ambition level (1-10): "))
 
 if __name__ == "__main __":
-    character = init_character(
-        {"last_name": last_name, "first_name": first_name},
-        {
-            "courage": courage,
-            "intelligence": intelligence,
-            "loyalty": loyalty,
-            "ambition": ambition
-        }
-    )
-    print("Character created successfully!")
-    print(character)
+    print("Character profile:")
+    print("Last Name:", last_name)
+    print("First Name:", first_name)
+    print("Money: 100")
+    print("Inventory: ")
+    print("Spells: ")
+    print("Attributes:")
+    print(" - Courage:", courage)
+    print(" - Intelligence:", intelligence)
+    print(" - Loyalty:", loyalty)
+    print(" - Ambition:", ambition)

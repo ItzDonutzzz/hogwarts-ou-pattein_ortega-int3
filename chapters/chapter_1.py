@@ -18,13 +18,8 @@ def create_character(last_name, first_name, courage, intelligence, loyalty, ambi
     }
     return character
 
-def init_character(str, attributes):
-    last_name = str.get("last_name", "Doe")
-    first_name = str.get("first_name", "John")
-    courage = attributes.get("courage", 5)
-    intelligence = attributes.get("intelligence", 5)
-    loyalty = attributes.get("loyalty", 5)
-    ambition = attributes.get("ambition", 5)
+def init_character():
+
 
     character = create_character(last_name, first_name, courage, intelligence, loyalty, ambition)
     return character
