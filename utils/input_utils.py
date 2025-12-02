@@ -2,7 +2,7 @@ from json import*
 from random import*
 
 
-def ask_text(message: str) -> str:
+def ask_text(message: str):
     user_input = input(message).strip()
     while not user_input:
         print("Input cannot be empty. Please enter valid text.")
