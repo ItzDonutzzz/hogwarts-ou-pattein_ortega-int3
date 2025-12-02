@@ -57,6 +57,19 @@ def ask_number(message : str, min_val : int = None, max_val: int = None):
             print("Invalid input. Please enter a valid integer.")
 
 
-def ask_choice(message, options)
+def ask_choice(message, options):
+    while True :
+        print(message)
+        for i, option in enumerate(options, start=1):
+            print(f"{i}. {option}")
+        user_input = input("Please select an option by entering the corresponding number: ").strip()
+        try:
+            choice = int(user_input)
+            if 1 <= choice <= len(options):
+                return options[choice - 1]
+            else:
+                print(f"Invalid choice. Please enter a number between 1 and {len(options)}.")
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
 
 
