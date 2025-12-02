@@ -1,3 +1,4 @@
+import numbers
 from json import*
 from random import*
 
@@ -11,29 +12,51 @@ def ask_text(message: str):
     """Demande à l'utilisateur de saisir du texte non vide."""
 
 
-def ask_number(message: str, min_val: int = None, max_val: int = None):
-    while True:
-        user_input = input(message).strip()
-        if user_input.startswith('-'):
-            is_negative = True
-            user_input = user_input[1:]
-        else:
-            is_negative = False
-
-        if all(c.isdigit() for c in user_input) and user_input:
-            number = 0
-            for c in user_input:
-                number = number * 10 + (ord(c) - ord('0'))
-            if is_negative:
-                number = -number
-
-            if (min_val is None or number >= min_val) and (max_val is None or number <= max_val):
-                return number
+def ask_number(message: str, min_val=None, max_val=None):
+while True:
+    if min_val is not None and max_val is not None:
+        user_input = input(message , f"({min_val} - {max_val})").strip()
+        try:
+            value = int(user_input)
+            if (min_val is not None and value < min_val) or (max_val is not None and value > max_val):
+                if min_val is not None and max_val is not None:
+                    print(f"Please enter a number between {min_val} and {max_val}.")
+                elif min_val is not None:
+                    print(f"Please enter a number greater than or equal to {min_val}.")
+                elif max_val is not None:
+                    print(f"Please enter a number less than or equal to {max_val}.")
             else:
-                print(f"Please enter a number between {min_val} and {max_val}.")
-        else:
-            print("Invalid input. Please enter a valid integer.")
-    """Demande à l'utilisateur de saisir un entier avec des limites optionnelles."""
+                return value
+
+    elif min_val is not None and max_val is None:
+        user_input = input(message , f"(minimum {min_val})").strip()
+        try:
+            value = int(user_input)
+            if value < min_val:
+                print(f"Please enter a number greater than or equal to {min_val}.")
+            else:
+                return value
+
+    elif max_val is not None and min_val is None:
+        user_input = input(message , f"(maximum {max_val})").strip()
+        try:
+            value = int(user_input)
+            if value > max_val:
+                print(f"Please enter a number less than or equal to {max_val}.")
+            else:
+                return value
+
+    else:
+        user_input = input(message).strip()
+        try:
+            value = int(user_input)
+            return value
+
+
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+
+
 
 
 
