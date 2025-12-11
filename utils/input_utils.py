@@ -35,7 +35,7 @@ def ask_number(message: str, min_val: int = None, max_val: int = None) -> int:
         # Enlever tous les espaces internes
         normalized = user_input.replace(" ", "")
         if not normalized:
-            print("Entrée vide. Veuillez saisir un nombre entier.")
+            print("Pleaser enter a valid integer.")
             continue
 
         # Vérifier le signe négatif (ou positif) et que le reste soit numérique
@@ -46,16 +46,16 @@ def ask_number(message: str, min_val: int = None, max_val: int = None) -> int:
             rest = normalized
             sign = ""
         if not rest.isdigit():
-            print("Entrée invalide. Veuillez saisir un entier valide (ex: 42, -7).")
+            print("Invalid input, please enter a valid integer.")
 
         # Conversion
         value = int(sign + rest)
 
         # Vérifications des bornes
         if min_val is not None and value < min_val:
-            print(f"Veuillez saisir un nombre supérieur ou égal à {min_val}.")
+            print(f"Pleaser enter an integer superior or equal to {min_val}.")
         if max_val is not None and value > max_val:
-            print(f"Veuillez saisir un nombre inférieur ou égal à {max_val}.")
+            print(f"Pleaser enter an integer inferior or equal to {max_val}.")
 
         return value
 
