@@ -35,7 +35,7 @@ def ask_number(message: str, min_val: int = None, max_val: int = None) -> int:
         # Enlever tous les espaces internes
         normalized = user_input.replace(" ", "")
         if not normalized:
-            print("Entrée vide. Veuillez saisir un nombre entier.")
+            print("Pleaser enter a valid integer.")
             continue
 
         # Vérifier le signe négatif (ou positif) et que le reste soit numérique
@@ -46,23 +46,16 @@ def ask_number(message: str, min_val: int = None, max_val: int = None) -> int:
             rest = normalized
             sign = ""
         if not rest.isdigit():
-            print("Entrée invalide. Veuillez saisir un entier valide (ex: 42, -7).")
-            continue
+            print("Invalid input, please enter a valid integer.")
 
         # Conversion
-        try:
-            value = int(sign + rest)
-        except ValueError:
-            print("Entrée invalide. Veuillez saisir un entier valide.")
-            continue
+        value = int(sign + rest)
 
         # Vérifications des bornes
         if min_val is not None and value < min_val:
-            print(f"Veuillez saisir un nombre supérieur ou égal à {min_val}.")
-            continue
+            print(f"Pleaser enter an integer superior or equal to {min_val}.")
         if max_val is not None and value > max_val:
-            print(f"Veuillez saisir un nombre inférieur ou égal à {max_val}.")
-            continue
+            print(f"Pleaser enter an integer inferior or equal to {max_val}.")
 
         return value
 
@@ -72,13 +65,9 @@ def ask_choice(message, options):
         for i, option in enumerate(options, start=1):
             print(f"{i}. {option}")
         user_input = input("Please select an option by entering the corresponding number: ").strip()
-        try:
-            choice = int(user_input)
-            if 1 <= choice <= len(options):
-                return options[choice - 1]
-            else:
-                print(f"Invalid choice. Please enter a number between 1 and {len(options)}.")
-        except ValueError:
-            print("Invalid input. Please enter a valid integer.")
 
-
+        choice = int(user_input)
+        if choice not in (1, len(options)):
+            return options[choice - 1]
+        else:
+            print(f"Invalid choice. Please enter a number between 1 and {len(options)}.")
