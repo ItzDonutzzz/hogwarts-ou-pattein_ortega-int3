@@ -10,7 +10,7 @@ if __name__ == "__main__":
     ]
     introduction(messages, delay=3)
 
-if __name__ == "__main__":
+
     last_name = ask_text("Enter your character's last name: ")
     first_name = ask_text("Enter your character's first name: ")
     print("Choose your character attributes:")
@@ -18,6 +18,6 @@ if __name__ == "__main__":
     intelligence = ask_number("Intelligence level (1-10): ")
     loyalty = ask_number("Loyalty level (1-10): ")
     ambition = ask_number("Ambition level (1-10): ")
+    attributes = {last_name, first_name, courage, intelligence, loyalty, ambition}
 
-#if __name__ == "__main __":
 

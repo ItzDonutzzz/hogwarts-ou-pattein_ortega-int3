@@ -18,8 +18,8 @@ def create_character(last_name, first_name, courage, intelligence, loyalty, ambi
     }
     return character
 
-def init_character():
+def init_character(last_name, first_name, courage, intelligence, loyalty, ambition):
+    attributes = {create_character(last_name, first_name, courage, intelligence, loyalty, ambition)}
+    return attributes
 
 
-    character = create_character(last_name, first_name, courage, intelligence, loyalty, ambition)
-    return character
