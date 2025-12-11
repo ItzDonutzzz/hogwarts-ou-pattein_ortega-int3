@@ -12,50 +12,59 @@ def ask_text(message: str):
     """Demande à l'utilisateur de saisir du texte non vide."""
 
 
-def ask_number(message : str, min_val : int = None, max_val: int = None):
+def ask_number(message: str, min_val: int = None, max_val: int = None) -> int:
+    """
+    Demande un entier à l'utilisateur.
+    - Supprime les espaces internes.
+    - Gère le signe négatif (si le premier caractère est '-').
+    - Applique les contraintes min_val / max_val si fournies.
+    """
     while True:
+        # Construire l'invite avec indication des bornes
         if min_val is not None and max_val is not None:
-            user_input = input(message , f"({min_val} - {max_val})").strip()
-            try:
-                value = int(user_input)
-                if (min_val is not None and value < min_val) or (max_val is not None and value > max_val):
-                    if min_val is not None and max_val is not None:
-                        print(f"Please enter a number between {min_val} and {max_val}.")
-                    elif min_val is not None:
-                        print(f"Please enter a number greater than or equal to {min_val}.")
-                    elif max_val is not None:
-                        print(f"Please enter a number less than or equal to {max_val}.")
-                else:
-                    return value
-
-        elif min_val is not None and max_val is None:
-            user_input = input(message , f"(minimum {min_val})").strip()
-            try:
-                value = int(user_input)
-                if value < min_val:
-                    print(f"Please enter a number greater than or equal to {min_val}.")
-                else:
-                    return value
-
-        elif max_val is not None and min_val is None:
-            user_input = input(message , f"(maximum {max_val})").strip()
-            try:
-                value = int(user_input)
-                if value > max_val:
-                    print(f"Please enter a number less than or equal to {max_val}.")
-                else:
-                    return value
-
+            hint = f"({min_val} - {max_val})"
+        elif min_val is not None:
+            hint = f"(minimum {min_val})"
+        elif max_val is not None:
+            hint = f"(maximum {max_val})"
         else:
-            user_input = input(message).strip()
-            try:
-                value = int(user_input)
-                return value
+            hint = ""
+        prompt = f"{message} {hint}".strip() + ": "
+        user_input = input(prompt).strip()
 
+        # Enlever tous les espaces internes
+        normalized = user_input.replace(" ", "")
+        if not normalized:
+            print("Entrée vide. Veuillez saisir un nombre entier.")
+            continue
 
+        # Vérifier le signe négatif (ou positif) et que le reste soit numérique
+        if normalized[0] in "+-":
+            rest = normalized[1:]
+            sign = normalized[0]
+        else:
+            rest = normalized
+            sign = ""
+        if not rest.isdigit():
+            print("Entrée invalide. Veuillez saisir un entier valide (ex: 42, -7).")
+            continue
+
+        # Conversion
+        try:
+            value = int(sign + rest)
         except ValueError:
-            print("Invalid input. Please enter a valid integer.")
+            print("Entrée invalide. Veuillez saisir un entier valide.")
+            continue
 
+        # Vérifications des bornes
+        if min_val is not None and value < min_val:
+            print(f"Veuillez saisir un nombre supérieur ou égal à {min_val}.")
+            continue
+        if max_val is not None and value > max_val:
+            print(f"Veuillez saisir un nombre inférieur ou égal à {max_val}.")
+            continue
+
+        return value
 
 def ask_choice(message, options):
     while True :
