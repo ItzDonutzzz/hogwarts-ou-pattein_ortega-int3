@@ -1,5 +1,5 @@
 import numbers
-from json import*
+import json
 from random import*
 
 
@@ -72,9 +72,9 @@ def ask_choice(message, options):
         else:
             print(f"Invalid choice. Please enter a number between 1 and {len(options)}.")
 
-def load_file(file_path: str) -> Any:
+def load_file(file_path: str) :
     """
     Ouvre `file_path` en lecture (UTF8), charge le JSON et retourne la donnée.
     """
-    with open(file_path, 'r', encoding='utf-8') as f:
+    with open('file_path', 'r', encoding='utf-8') as f:
         return json.load(f)
