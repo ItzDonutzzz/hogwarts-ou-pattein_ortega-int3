@@ -71,3 +71,10 @@ def ask_choice(message, options):
             return options[choice - 1]
         else:
             print(f"Invalid choice. Please enter a number between 1 and {len(options)}.")
+
+def load_file(file_path: str) -> Any:
+    """
+    Ouvre `file_path` en lecture (UTF8), charge le JSON et retourne la donnée.
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
