@@ -18,8 +18,20 @@ def create_character(last_name, first_name, courage, intelligence, loyalty, ambi
     }
     return character
 
-def init_character(last_name, first_name, courage, intelligence, loyalty, ambition):
-    attributes = {create_character(last_name, first_name, courage, intelligence, loyalty, ambition)}
+def init_character(tuple):
+    attributes = {
+        "Character profile": "",
+        "last_name": tuple[0],
+        "first_name": tuple[1],
+        "Money : 100": "",
+        "Inventory :": "",
+        "Spells :": "",
+        "Attributes :": "",
+        "courage": tuple[2],
+        "intelligence": tuple[3],
+        "loyalty": tuple[4],
+        "ambition": tuple[5]
+    }
     return attributes
 
 

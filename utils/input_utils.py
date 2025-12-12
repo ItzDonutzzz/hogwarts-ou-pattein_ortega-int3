@@ -29,7 +29,7 @@ def ask_number(message: str, min_val: int = None, max_val: int = None) -> int:
             hint = f"(maximum {max_val})"
         else:
             hint = ""
-        prompt = f"{message} {hint}".strip()
+        prompt = f"{message} {hint}".strip() + ": "
         user_input = input(prompt).strip()
 
         # Enlever tous les espaces internes
